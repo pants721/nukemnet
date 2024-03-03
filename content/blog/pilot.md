@@ -1,7 +1,6 @@
 +++
 title = "Pilot"
 date = 2024-03-03
-draft = true
 +++
 
 Hi everyone, welcome to my website. I've been meaning to make a website for a
