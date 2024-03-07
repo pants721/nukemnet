@@ -12,7 +12,8 @@ compile_sass = true
 build_search_index = true
 
 taxonomies = [
-	{name = "category", feed = true},
+	{name = "tags"},
+	{name = "categories"},
 ]
 
 [markdown]
@@ -27,4 +28,6 @@ header_nav = [
     { name = "home", url = "/" },
 	{ name = "blog", url = "/blog" },
     { name = "contact", url = "/contact" },
+    { name = "#tags", url = "/tags" },
+    { name = "+categories", url = "/categories" },
 ]
