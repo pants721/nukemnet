@@ -2,6 +2,9 @@
 title = "Skely 2.0"
 date = 2024-03-11
 draft = true
+[taxonomies]
+tags=["development", "Rust", "Skely"]
+categories=["development"]
 +++
 
 Hi everyone! For the past week or so I've been revisiting an old project of mine 
