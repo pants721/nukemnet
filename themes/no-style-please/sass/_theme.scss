@@ -1,0 +1,75 @@
+// Source: https://github.com/InputUsername/zola-hook/blob/6644da01db0eadebc4e4405e05570898183b18f4/sass/_theme.scss
+
+$foreground: black;
+$background: white;
+$background-code: lightgrey;
+$post-date: #7d7d7d;
+
+@mixin light-theme {
+    color: $foreground;
+    background-color: $background;
+}
+
+@mixin dark-theme {
+    @include light-theme;
+    filter: invert(1);
+
+    img {
+        filter: invert(1);
+
+        &.invertable { filter: invert(0); }
+    }
+
+    pre {
+        filter: invert(1);
+
+        &.invertable { filter: invert(0); }
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        @include light-theme;
+    }
+}
+
+
+.dark-mode-buttons {
+    position: absolute !important;
+
+    top: 1em !important;
+    right: 1em !important;
+}
+
+.dark-mode-button {
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+body:not(.dark-mode) {
+    @include light-theme;
+
+    #dark-mode-on {
+        display: inline;
+    }
+
+    #dark-mode-off {
+        display: none;
+    }
+}
+
+body.dark-mode {
+    @include dark-theme;
+
+    #dark-mode-on {
+        display: none;
+    }
+
+    #dark-mode-off {
+        display: inline;
+    }
+}

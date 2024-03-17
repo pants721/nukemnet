@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block header %}
+<!-- FIXME: This sucks -->
+<p><a href="{{current_url | trim_end_matches(pat=term.slug ~ "/")}}">..</a>/{{ term.slug }}/</p>
+{% endblock header %}
+
+{% block content %}
+{% if paginator %}
+{% set pages = paginator.pages %}
+{% else %}
+{% set pages = term.pages %}
+{% endif %}
+<ul>
+{% for page in pages %}
+    <li>
+		<a href="{{ page.permalink | safe }}">{{ page.title }}{% if page.date %}</a> <span class="post-date">({{page.date}})</span>{% endif %}
+        <br />
+        {{ page.description }}
+    </li>
+{% endfor %}
+</ul>
+{% if paginator %}
+<p>{% if paginator.previous %}<a href="{{ paginator.first }}">&lt;&lt; First</a> <a href="{{ paginator.previous }}">&lt; Previous</a>{% endif %} [{{ paginator.current_index }}/{{ paginator.number_pagers }}] {% if paginator.next %}<a href="{{ paginator.next }}">Next &gt;</a> <a href="{{ paginator.last }}">Last &gt;&gt;</a>{% endif %}</p>
+{% endif %}
+{% endblock content %}
+
+{% block footer %}
+    <footer>Subscribe <a href="atom.xml">via rss</a></footer>
+{% endblock footer %}

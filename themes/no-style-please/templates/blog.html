@@ -1,0 +1,13 @@
+{% extends "section.html" %}
+
+{% block header %}
+    <p>
+        <a href="{{ section.path }}..">..</a>{{ section.path }}{ <a href="/tags">tags</a>, <a href="/categories">categories</a> } ->
+        {% if section.extra.greeting %}
+            <span class="greeting">{{ section.extra.greeting }}</span>
+        {% endif %}
+    </p>
+{% endblock header %}
+{% block footer %}
+    <footer>Subscribe <a href="atom.xml">via rss</a></footer>
+{% endblock footer %}

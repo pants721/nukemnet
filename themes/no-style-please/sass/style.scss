@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap')
+@font-face {
+  font-family: 'MonaspaceKrypton';
+  src:  url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
+        url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff') format('woff');
+}
+
+@import "theme";
+
+
+// bg color is also needed in html in order to
+// block body's background propagation
+// see: https://stackoverflow.com/a/61265706
+html, body { background: white; }
+
+html { height: 100%; }
+
+body {
+  font-size: 16px;
+  font-family: MonaspaceKrypton, "Fira Code", monospace;
+  font-optical-sizing: auto;
+  font-weight: medium;
+  font-style: normal;
+    font-size: 1.15em;
+  line-height: 1.4;
+  margin: 0;
+  min-height: 100%;
+  overflow-wrap: break-word;
+}
+
+.post-meta { text-align: right; }
+
+h2, h3, h4, h5, h6 { margin-top: 3rem; }
+
+hr { margin: 2rem 0; }
+
+p { margin: 1rem 0; }
+
+li { margin: 0.4rem 0; }
+
+*:target { background: yellow; }
+
+.w {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+hr {
+  text-align: center;
+  border: 0;
+
+  &:before { content: '/////' }
+  &:after { content: attr(data-content) '/////' }
+}
+
+table { width: 100%; }
+
+table, th, td {
+  border: thin solid black;
+  border-collapse: collapse;
+  padding: 0.4rem;
+}
+
+:not(pre) > code {
+	background-color: lightgrey;
+	color: black;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 1em;
+    border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  padding: 1rem;
+  // padding-top: 1.5rem;
+  // padding-bottom: 1.5rem;
+  font-weight: 500;
+    font-size: .85em;
+  font-family: "Fira Code";
+}
+
+pre {
+  border-radius: 10px;
+  background-color: black;
+  overflow: auto;
+}
+
+blockquote {
+  font-style: italic;
+  border: thin solid black;
+  padding: 1rem;
+
+  p { margin: 0; }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.footnote-definition {
+  padding: 0 1rem;
+  &:target {
+    background: yellow;
+    color: #212121;
+  }
+  p {
+    display: inline;
+  }
+}
+
+nav, .taxonomies { 
+    text-align: center; 
+}
+
+.post-date {
+	color: #7d7d7d;
+}
+
+.page-content {
+  font-family: "Fira Code", monospace;
+}
+
+.greeting {
+    @extend code;
+    background-color: #e6e6e6 !important;
+    font-size: 85% !important;
+
+    padding: 5px !important;
+    border-radius: 5px !important;
+    opacity: 75%;
+}
+
+footer {
+    font-size: 85%;
+}

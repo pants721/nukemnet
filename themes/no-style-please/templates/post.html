@@ -1,0 +1,13 @@
+{% extends "page.html" %}
+
+{% block header %}
+<p><a href="..">..</a>/{{ page.slug }}</p>
+<p class="post-meta"><time datetime="{{ page.date }}">{{ page.date }}</time></p>
+<h1>{{ page.title }}</h1>
+{% endblock header %}
+
+{% block footer %}
+<a class="revision" href="https://github.com/pants721/pants721.github.io/commits/main/content{{page.path | trim_end_matches(pat="/")}}.md">revision history</a>
+
+{{ super() }}
+{% endblock footer %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% set greeting = taxonomy.name ~ ".iter();" %}
+<p><a href="/blog">..</a>{{ current_path }} -> {{ super() }}</p>
+{% endblock header %}
+{% block content %}
+<ul>
+{% for term in terms %}
+    <li>
+        <a href="{{ term.permalink | safe }}">{{ term.slug }}</a> [{{ term.pages | length }}]
+    </li>
+{% endfor %}
+</ul>
+{% endblock content %}
