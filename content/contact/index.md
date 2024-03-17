@@ -1,4 +1,6 @@
 +++
+[extra]
+greeting = "extern crate lucas;"
 +++
 
 - [github](https://github.com/pants721)

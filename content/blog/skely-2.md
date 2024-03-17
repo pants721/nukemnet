@@ -15,7 +15,7 @@ much much better developer and I want to look at some of my old code, look at
 the new code, and analyze why the new code is better. This won't be a complete
 code review, so if you're interested in the project's development make sure to
 check it out on [Github](https://github.com/pants721/skely)!
- 
+
 The major issue with the 1.0 was over-engineering. On paper, Skely should be a
 pretty simple project. It only has 3 jobs:
  
