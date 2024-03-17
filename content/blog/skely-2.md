@@ -130,7 +130,7 @@ fn get_editor(&self) -> Result<String> {
  
 Now, let's talk about project structure. Skely 1.0 had way too many files for 
 how simple of a project it was. The original file tree looked like this:
-```bash
+```
 src
 ├── app.rs
 ├── cli.rs
