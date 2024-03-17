@@ -11,9 +11,11 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+generate_feed = true
+
 taxonomies = [
-	{name = "tags"},
-	{name = "categories"},
+	{name = "tags", feed = true},
+	{name = "categories", feed = true},
 ]
 
 [markdown]

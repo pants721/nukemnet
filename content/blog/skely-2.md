@@ -2,7 +2,7 @@
 title = "My software used to suck"
 date = 2024-03-11
 [taxonomies]
-tags=["development", "Rust", "Skely"]
+tags=["development", "rust", "skely"]
 categories=["development"]
 +++
  

@@ -2,7 +2,7 @@
 title = "Pilot"
 date = 2024-03-03
 [taxonomies]
-tags=["yap", "development", "Zola"]
+tags=["yap", "development", "zola"]
 categories=["development"]
 +++
 
