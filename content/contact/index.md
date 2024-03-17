@@ -1,4 +1,5 @@
 +++
+title = "contact"
 [extra]
 greeting = "extern crate lucas;"
 +++
