@@ -78,7 +78,6 @@ pre code {
   padding: 1rem;
   // padding-top: 1.5rem;
   // padding-bottom: 1.5rem;
-  font-weight: 500;
     font-size: .85em;
   font-family: "Fira Code";
 }
@@ -138,4 +137,8 @@ nav, .taxonomies {
 
 footer {
     font-size: 85%;
+}
+
+details summary {
+    cursor: pointer;
 }
