@@ -19,7 +19,7 @@ Either of these work.
 ```sh
 age -r age1wjtxvkclphvnhqpgt82m7nhkjn9fw7cyrrguzddugshxw9q9hpjqf3e9kq message.txt > message.txt.age
 
-curl https://pants721.github.io/public.age | age -R - message.txt > message.txt.age
+curl https://pants721.github.io/lucasnewcomb.age | age -R - message.txt > message.txt.age
 ```
 </details>
 
@@ -27,7 +27,7 @@ curl https://pants721.github.io/public.age | age -R - message.txt > message.txt.
 <summary>pgp</summary>
 
 ```sh
-curl https://pants721.github.io/pgp.asc | gpg --import
+curl https://pants721.github.io/lucasnewcomb.pgp.asc | gpg --import
 ```
 
 or
@@ -74,6 +74,23 @@ f9KP+8gqLdO3QAxPXfYZHBRkZkThKmxuBWkv9zRrfLBjSMJvunFb7tg1unQm3qZL
 jQ2Lwf+lMihnr9KpoOdpAo70/70Zn731kaCRigaSkEel/yLz
 =rY/B
 -----END PGP PUBLIC KEY BLOCK-----
+```
+
+</details>
+
+<details>
+<summary>ssh</summary>
+
+any of these
+
+<a href="/lucasnewcomb.ssh.pub">download</a>
+
+```sh
+curl https://pants721.github.io/lucasnewcomb.ssh.pub > lucasnewcomb.ssh.pub
+```
+
+```
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFm3K2XjxmBkWCJd9dZd6SXFewF8L+5/bbxF0kG2pZPk lucasnewcomb721@gmail.com
 ```
 
 </details>
