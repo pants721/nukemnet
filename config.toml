@@ -31,5 +31,6 @@ highlight_theme = "gruvbox-dark"
 header_nav = [
     { name = "home", url = "/" },
 	{ name = "blog", url = "/blog" },
+	{ name = "projects", url = "/projects" },
     { name = "contact", url = "/contact" },
 ]
