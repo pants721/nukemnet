@@ -4,10 +4,15 @@ $foreground: black;
 $background: white;
 $background-code: lightgrey;
 $post-date: #7d7d7d;
+$link-color: #551A8B;
 
 @mixin light-theme {
     color: $foreground;
     background-color: $background;
+
+    a {
+        color: $link-color;
+    }
 }
 
 @mixin dark-theme {
