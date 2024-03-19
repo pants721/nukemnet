@@ -1,7 +1,9 @@
+// super messy css
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap')
 @font-face {
-  font-family: 'MonaspaceKrypton';
-  src:  url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
+    font-family: 'MonaspaceKrypton';
+    src:  url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
         url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff') format('woff');
 }
 
@@ -16,23 +18,22 @@ html, body { background: white; }
 html { height: 100%; }
 
 body {
-  font-size: 16px;
-  font-family: MonaspaceKrypton, "Fira Code", monospace;
-  font-optical-sizing: auto;
-  font-weight: medium;
-  font-style: normal;
-    font-size: 1.15em;
-  line-height: 1.4;
-  margin: 0;
-  min-height: 100%;
-  overflow-wrap: break-word;
+    font-family: MonaspaceKrypton, "Fira Code", monospace;
+    font-optical-sizing: auto;
+    font-weight: medium;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+    min-height: 100%;
+    overflow-wrap: break-word;
 }
 
 .post-meta { text-align: right; }
 
 h2, h3, h4, h5, h6 { margin-top: 3rem; }
 
-hr { margin: 2rem 0; }
+hr { margin: 1rem 0; }
 
 p { margin: 1rem 0; }
 
@@ -41,76 +42,76 @@ li { margin: 0.4rem 0; }
 *:target { background: yellow; }
 
 .w {
-  max-width: 740px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
 hr {
-  text-align: center;
-  border: 0;
+    text-align: center;
+    border: 0;
+    border-top: #b5b5b5 1px solid;
 
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
+    // &:before { content: '/////' }
+    // &:after { content: attr(data-content) '/////' }
 }
 
 table { width: 100%; }
 
 table, th, td {
-  border: thin solid black;
-  border-collapse: collapse;
-  padding: 0.4rem;
+    border: thin solid black;
+    border-collapse: collapse;
+    padding: 0.4rem;
 }
 
 :not(pre) > code {
-	background-color: lightgrey;
-	color: black;
-    padding: 0.2em 0.4em;
+    background-color: #e6e6e6 !important;
+    color: black;
+    padding: 0.1em 0.2em;
     margin: 0;
-    font-size: 1em;
+    font-size: 0.85em;
     border-radius: 3px;
 }
 
 pre code {
-  display: block;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  padding: 1rem;
-  // padding-top: 1.5rem;
-  // padding-bottom: 1.5rem;
-    font-size: .85em;
-  font-family: "Fira Code";
+    display: block;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    padding: 1rem;
+    font-size: .9em;
+    font-family: "Fira Code";
 }
 
 pre {
-  border-radius: 10px;
-  background-color: black;
-  overflow: auto;
+    border: 3px #444 solid;
+    border-radius: 10px;
+    background-color: black !important;
+    overflow: auto;
 }
 
 blockquote {
-  font-style: italic;
-  border: thin solid black;
-  padding: 1rem;
+    font-style: italic;
+    border: thin solid black;
+    padding: 1rem;
 
-  p { margin: 0; }
+    p { margin: 0; }
 }
 
 img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
 .footnote-definition {
-  padding: 0 1rem;
-  &:target {
-    background: yellow;
-    color: #212121;
-  }
-  p {
-    display: inline;
-  }
+    padding: 0 1rem;
+    &:target {
+        background: yellow;
+        color: #212121;
+    }
+    p {
+        display: inline;
+    }
 }
 
 nav, .taxonomies { 
@@ -118,11 +119,11 @@ nav, .taxonomies {
 }
 
 .post-date {
-	color: #7d7d7d;
+    color: $post-date;
 }
 
 .page-content {
-  font-family: "Fira Code", monospace;
+    font-family: "Fira code";
 }
 
 .greeting {
@@ -136,7 +137,13 @@ nav, .taxonomies {
 }
 
 footer {
+    margin-top: 2rem;
     font-size: 85%;
+    opacity: 50%;
+}
+
+footer hr {
+    color: black;
 }
 
 details summary {

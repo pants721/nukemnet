@@ -126,13 +126,16 @@
             </main>
             <footer>
                 {% block footer %}{% endblock footer %}
-                {% if config.extra.footer_nav %}
-                <nav>
-                    {% for nav_item in config.extra.footer_nav %}
-                    <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
-                    {% endfor %}
-                </nav>
-                {% endif %}
+                <hr data-content=" bottom ">
+                <span>
+                    <p>This site was built using <a href="https://github.com/getzola/zola">Zola</a> and the 
+                        source code can be found <a href="https://github.com/pants721/pants721.github.io">here</a>.</p>
+                    {% if config.author %} 
+                    © {{ config.author }} 2024-2024,
+                    {% endif %}
+                    licensed under
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a>
+                </span>
             </footer>
         </div>
         <div class="dark-mode-buttons">
