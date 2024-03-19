@@ -30,6 +30,10 @@ $link-color: #551A8B;
 
         &.invertable { filter: invert(0); }
     }
+
+    .greeting {
+        opacity: 75%;
+    }
 }
 
 @media (prefers-color-scheme: light) {
