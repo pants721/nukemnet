@@ -8,6 +8,7 @@
         {% endif %}
     </p>
 {% endblock header %}
-{% block footer %}
-    <footer>Subscribe <a href="atom.xml">via rss</a></footer>
-{% endblock footer %}
+{% block content%}
+    {{ super() }}
+    <p class="rss-sub">Subscribe <a href="atom.xml">via atom</a></p>
+{% endblock content %}
