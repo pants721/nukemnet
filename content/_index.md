@@ -3,14 +3,12 @@
 greeting = "println!(\"howdy\");"
 +++
 
-Hello! My name is Lucas. I'm a software developer and enthusiast.
+Hello! I'm Lucas (a.k.a. pants721). Welcome to my website :).
 
-My areas of expertise are
-- Rust
-- Linux
-- Devops
+This is the main place you can find my info, as well as <a href="/blog">my various musings</a>.
 
-I love learning new technologies and creating efficient software.
+I write software (usually in rust) with a particular interest in devops and sysadmin.
 
-This site was built using [Zola](https://github.com/getzola/zola) and the 
-source code can be found [here](https://github.com/pants721/pants721.github.io).
+I also love volleyball, video games, and philosophy.
+
+<a href="/about">more about me</a>

@@ -1,5 +1,7 @@
 title = "pantsnet"
 
+author = "Lucas Newcomb"
+
 # The URL the site will be built for
 base_url = "https://pants721.github.io"
 
@@ -29,6 +31,5 @@ highlight_theme = "gruvbox-dark"
 header_nav = [
     { name = "home", url = "/" },
 	{ name = "blog", url = "/blog" },
-	{ name = "about", url = "/about" },
     { name = "contact", url = "/contact" },
 ]
