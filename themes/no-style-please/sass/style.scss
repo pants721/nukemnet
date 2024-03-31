@@ -24,7 +24,8 @@ body {
     font-style: normal;
     // font-size: 18px;
     font-size: 1.15rem;
-    line-height: 1.4;
+    color: #24292e !important;
+    line-height: 1.5;
     margin: 0;
     min-height: 100%;
     overflow-wrap: break-word;
@@ -74,10 +75,14 @@ table, th, td {
 :not(pre) > code {
     background-color: #e6e6e6 !important;
     color: black;
-    padding: 0.1em 0.2em;
+    padding: 0.2em 0.4em;
     margin: 0;
-    font-size: 0.85em;
+    font-size: 85%;
     border-radius: 3px;
+}
+
+code {
+    font-family: MonaspaceKrypton, "Fira Code", monospace;
 }
 
 pre code {
@@ -86,13 +91,10 @@ pre code {
     white-space: pre-wrap;
     padding: 1rem;
     font-size: .9em;
-    font-family: "Fira Code";
 }
 
 pre {
-    border: 3px #444 solid;
     border-radius: 10px;
-    background-color: black !important;
     overflow: auto;
 }
 
@@ -130,7 +132,7 @@ nav, .taxonomies {
 }
 
 .page-content {
-    font-family: "Fira code";
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 .greeting {
