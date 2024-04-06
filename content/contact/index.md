@@ -4,8 +4,11 @@ title = "contact"
 greeting = "extern crate lucas;"
 +++
 
+email me or message me on discord for my signal username
+- [email](mailto:pants.inbox@gmail.com)
+- discord: `pants721`
+
 - [github](https://github.com/pants721)
-- [email](mailto:lucasnewcomb721@gmail.com)
 
 **keys**
 
