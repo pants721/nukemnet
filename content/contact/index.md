@@ -32,7 +32,7 @@ curl https://pants721.github.io/lucasnewcomb.pgp.asc | gpg --import
 
 or
 
-```pgp
+```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQGNBGX4kOUBDADb+O8KTTL32i/ctO2/cQ149vvEBZA8ZqCOgOjEKuRdSY+9apWH
