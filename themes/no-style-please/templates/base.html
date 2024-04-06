@@ -119,7 +119,7 @@
                 {% endif %}
                 {% block header %}
                     {% if greeting %}
-                        <span class="greeting">{{ greeting }}</span>
+                        <code class="greeting">{{ greeting }}</code>
                     {% endif %}
                     <!-- {% if title %}<h1>{{ title }}</h1>{% endif %} -->
                 {% endblock header %}
@@ -152,8 +152,8 @@
                 cls.toggle("dark-mode", true);
             } else if (getSessionTheme === "light") {
                 cls.toggle("dark-mode", false);
-            } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                cls.toggle("dark-mode", true);
+            } else {
+                cls.toggle("dark-mode", false);
             }
 
             document.getElementById("dark-mode-on").addEventListener("click", function(e) {
