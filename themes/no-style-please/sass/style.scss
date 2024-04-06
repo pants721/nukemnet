@@ -1,6 +1,7 @@
 // super messy css
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap')
 @font-face {
     font-family: 'MonaspaceKrypton';
     src:  url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
@@ -18,12 +19,11 @@ html, body { background: white; }
 html { height: 100%; }
 
 body {
-    font-family: MonaspaceKrypton, "Fira Code", monospace;
+    font-family: "Jetbrains mono";
     font-optical-sizing: auto;
     font-weight: medium;
     font-style: normal;
-    // font-size: 18px;
-    font-size: 1.15rem;
+    font-size: 18px;
     color: #24292e !important;
     line-height: 1.5;
     margin: 0;
@@ -52,7 +52,7 @@ li { margin: 0.4rem 0; }
 *:target { background: yellow; }
 
 .w {
-    max-width: 740px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 4rem 2rem;
     // padding-top: 1em;
@@ -75,14 +75,14 @@ table, th, td {
 :not(pre) > code {
     background-color: #e6e6e6 !important;
     color: black;
-    padding: 0.2em 0.4em;
+    padding: 0.1em 0.2em;
     margin: 0;
     font-size: 85%;
     border-radius: 3px;
 }
 
 code {
-    font-family: MonaspaceKrypton, "Fira Code", monospace;
+    font-family: "Jetbrains mono";
 }
 
 pre code {
@@ -132,13 +132,15 @@ nav, .taxonomies {
 }
 
 .page-content {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Jetbrains Mono";
 }
 
 .greeting {
     @extend code;
     background-color: #e6e6e6 !important;
     font-size: 85% !important;
+    // I know it doesnt make sense to have only this a different font, but i juts like how it looks too much
+    font-family: MonaspaceKrypton;
 
     padding: 5px !important;
     border-radius: 5px !important;
