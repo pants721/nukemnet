@@ -13,6 +13,13 @@ $link-color: #551A8B;
     a {
         color: $link-color;
     }
+    
+    pre {
+        filter: invert(1);
+
+        &.invertable { filter: invert(0); }
+    }
+
 }
 
 @mixin dark-theme {
@@ -20,12 +27,6 @@ $link-color: #551A8B;
     filter: invert(1);
 
     img {
-        filter: invert(1);
-
-        &.invertable { filter: invert(0); }
-    }
-
-    pre {
         filter: invert(1);
 
         &.invertable { filter: invert(0); }
