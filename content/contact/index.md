@@ -18,7 +18,9 @@ Either of these work.
 
 ```sh
 age -r age1wjtxvkclphvnhqpgt82m7nhkjn9fw7cyrrguzddugshxw9q9hpjqf3e9kq message.txt > message.txt.age
+```
 
+```sh
 curl https://pants721.github.io/lucasnewcomb.age | age -R - message.txt > message.txt.age
 ```
 </details>
