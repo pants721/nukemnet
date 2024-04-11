@@ -37,4 +37,4 @@ header_nav = [
     { name = "contact", url = "/contact" },
 ]
 
-logo = "images/favicon-32x32.png"
+logo = "images/android-chrome-512x512.png"
