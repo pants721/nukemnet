@@ -1,10 +1,8 @@
 // super messy css
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap')
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap')
-@font-face {
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap') @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap') @font-face {
     font-family: 'MonaspaceKrypton';
-    src:  url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
+    src: url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
         url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff') format('woff');
 }
 
@@ -14,9 +12,14 @@
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html, body { background: white; }
+html,
+body {
+    background: white;
+}
 
-html { height: 100%; }
+html {
+    height: 100%;
+}
 
 body {
     font-family: "Jetbrains mono";
@@ -31,7 +34,9 @@ body {
     overflow-wrap: break-word;
 }
 
-.post-meta { text-align: right; }
+.post-meta {
+    text-align: right;
+}
 
 a {
     // text-decoration: none;
@@ -41,15 +46,30 @@ a:hover {
     text-decoration: underline dashed;
 }
 
-h2, h3, h4, h5, h6 { margin-top: 3rem; }
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
 
-hr { margin: 1rem 0; }
+hr {
+    margin: 1rem 0;
+}
 
-p { margin: 1rem 0; }
+p {
+    margin: 1rem 0;
+}
 
-li { margin: 0.4rem 0; }
+li {
+    margin: 0.4rem 0;
+}
 
-*:target { background: yellow; }
+*:target {
+    background: yellow;
+}
 
 .w {
     max-width: 800px;
@@ -64,15 +84,19 @@ hr {
     border-top: #b5b5b5 1px solid;
 }
 
-table { width: 100%; }
+table {
+    width: 100%;
+}
 
-table, th, td {
+table,
+th,
+td {
     border: thin solid black;
     border-collapse: collapse;
     padding: 0.4rem;
 }
 
-:not(pre) > code {
+:not(pre)>code {
     background-color: #e6e6e6 !important;
     color: black;
     padding: 0.1em 0.2em;
@@ -103,7 +127,9 @@ blockquote {
     border: thin solid black;
     padding: 1rem;
 
-    p { margin: 0; }
+    p {
+        margin: 0;
+    }
 }
 
 img {
@@ -114,17 +140,20 @@ img {
 
 .footnote-definition {
     padding: 0 1rem;
+
     &:target {
         background: yellow;
         color: #212121;
     }
+
     p {
         display: inline;
     }
 }
 
-nav, .taxonomies { 
-    text-align: center; 
+nav,
+.taxonomies {
+    text-align: center;
 }
 
 .post-date {
@@ -133,6 +162,10 @@ nav, .taxonomies {
 
 .page-content {
     font-family: "Jetbrains Mono";
+}
+
+.post-content {
+    font-family: sans-serif;
 }
 
 .greeting {

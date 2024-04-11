@@ -6,9 +6,11 @@
 {% endblock header %}
 
 {% block content %}
+<div class="post-content">
 {{ super() }}
+</div>
 <a class="revision" href="https://github.com/pants721/pants721.github.io/commits/main/content{{page.path | trim_end_matches(pat="/")}}.md">revision history</a>
-<p class="taxonomies">
+<div class="taxonomies">
 {% if page.taxonomies.tags %}
 {% for tag in page.taxonomies.tags %}
 <a href="/tags/{{ tag | slugify }}">#{{ tag }}</a>
@@ -24,5 +26,5 @@
 {% endfor %}
 {% endif %}
 {% endif %}
-</p>
+</div>
 {% endblock content %}
