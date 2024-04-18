@@ -1,10 +1,12 @@
 // super messy css
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap') @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap') @font-face {
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap') 
+@font-face {
     font-family: 'MonaspaceKrypton';
     src: url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
         url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff') format('woff');
 }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 @import "theme";
 
@@ -22,7 +24,7 @@ html {
 }
 
 body {
-    font-family: "Jetbrains mono";
+    font-family: "MonaspaceKrypton";
     font-optical-sizing: auto;
     font-weight: medium;
     font-style: normal;
@@ -61,6 +63,22 @@ hr {
 
 p {
     margin: 1rem 0;
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+li:before {
+  content: "-";
+  padding-right: 5px;
 }
 
 li {
@@ -105,7 +123,7 @@ td {
 }
 
 code {
-    font-family: "Jetbrains mono";
+    font-family: "MonaspaceKrypton";
 }
 
 pre code {
@@ -160,11 +178,12 @@ nav,
 }
 
 .page-content {
-    font-family: "Jetbrains Mono";
+    font-family: "MonaspaceKrypton";
 }
 
 .post-content :not(h1):not(h2):not(h3):not(code):not(pre code span) {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Roboto", sans-serif;
 }
 
 .greeting {
@@ -180,11 +199,7 @@ nav,
 
 footer {
     margin-top: 2rem;
-    font-size: 85%;
-}
-
-footer hr {
-    color: black;
+    // font-size: 85%;
 }
 
 details summary {
