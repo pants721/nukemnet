@@ -1,5 +1,5 @@
 +++
-title = "Wow my old code sucks!"
+title = "My old code sucks"
 date = 2024-03-11
 [taxonomies]
 tags=["development", "rust", "skely"]
