@@ -43,12 +43,14 @@ $link-color: #551A8B;
     }
 }
 
-
 .dark-mode-buttons {
-    position: absolute !important;
+  position: absolute !important;
 
-    top: 1em !important;
-    right: 1em !important;
+  top: 0em !important;
+  right: 1em !important;
+  padding: inherit;
+
+  opacity: 33%;
 }
 
 .dark-mode-button {

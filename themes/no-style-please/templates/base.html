@@ -112,10 +112,16 @@
 </head>
 
 <body class="dark-mode">
+        <div class="site-title">
+            {{ config.title }}
+        <div class="dark-mode-buttons">
+            <button class="dark-mode-button" id="dark-mode-on"><img src="{{ get_url(path='svg/dark_mode.svg') }}" width="24"
+                height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+            <button class="dark-mode-button" id="dark-mode-off"><img src="{{ get_url(path='svg/light_mode.svg') }}"
+                width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+        </div>
+        </div>
     <div class="w">
-        <!-- <div class="site-title-div"> -->
-        <!--     <p class="site-title">pantsnet</p> -->
-        <!-- </div> -->
         <header>
             {% if config.extra.header_nav %}
             <nav>
@@ -135,12 +141,6 @@
         <main class="page-content" aria-label="Content">
             {% block content %}{% endblock content %}
         </main>
-    </div>
-    <div class="dark-mode-buttons">
-        <button class="dark-mode-button" id="dark-mode-on"><img src="{{ get_url(path='svg/dark_mode.svg') }}" width="24"
-                height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
-        <button class="dark-mode-button" id="dark-mode-off"><img src="{{ get_url(path='svg/light_mode.svg') }}"
-                width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
     </div>
     <script>
         const cls = document.body.classList;

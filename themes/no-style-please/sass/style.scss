@@ -1,4 +1,13 @@
 // super messy css
+ @font-face {
+  font-family: vidfont;
+  src: url(/fonts/videotype.ttf);
+}
+
+@font-face {
+  font-family: VcrOsdNeue;
+  src: url(/fonts/VCRosdNEUE.ttf);
+}
 
 @import "theme";
 
@@ -85,7 +94,7 @@ li {
     max-width: 800px;
     margin: 0 auto;
     padding: 4rem 2rem;
-    // padding-top: 1em;
+    padding-top: 0;
 }
 
 hr {
@@ -172,6 +181,17 @@ footer {
 
 details summary {
     cursor: pointer;
+}
+
+.site-title {
+  max-width: 100%;
+  margin: 0 auto;
+  top: 0em !important;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.75em;
+  font-family: "VcrOsdNeue";
 }
 
 // .site-title {
