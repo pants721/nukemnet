@@ -1,13 +1,5 @@
 // super messy css
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap') 
-@font-face {
-    font-family: 'MonaspaceKrypton';
-    src: url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff2') format('woff2'),
-        url('/fonts/MonaspaceKryptonVarVF[wght\,wdth\,slnt].woff') format('woff');
-}
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 @import "theme";
 
 
@@ -24,7 +16,7 @@ html {
 }
 
 body {
-    font-family: "MonaspaceKrypton";
+    font-family: "monospace";
     font-optical-sizing: auto;
     font-weight: medium;
     font-style: normal;
@@ -116,14 +108,8 @@ td {
 
 :not(pre)>code {
     background-color: #e6e6e6 !important;
-    padding: 0.1em 0.2em;
     margin: 0;
-    font-size: 85%;
     border-radius: 3px;
-}
-
-code {
-    font-family: "MonaspaceKrypton";
 }
 
 pre code {
@@ -131,7 +117,6 @@ pre code {
     overflow-x: auto;
     white-space: pre-wrap;
     padding: 1rem;
-    font-size: .9em;
 }
 
 pre {
@@ -178,23 +163,6 @@ nav,
 }
 
 .page-content {
-    font-family: "MonaspaceKrypton";
-}
-
-.post-content :not(h1):not(h2):not(h3):not(code):not(pre code span) {
-    // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    font-family: "Roboto", sans-serif;
-}
-
-.greeting {
-    @extend code;
-    background-color: #e6e6e6 !important;
-    font-size: 85% !important;
-    // I know it doesnt make sense to have only this a different font, but i juts like how it looks too much
-    font-family: MonaspaceKrypton;
-
-    padding: 5px !important;
-    border-radius: 5px !important;
 }
 
 footer {

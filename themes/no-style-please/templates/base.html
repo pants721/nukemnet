@@ -17,12 +17,6 @@
     {% set title = config.title %}
     {% endif %}
 
-    {% if page.extra.greeting %}
-    {% set greeting = page.extra.greeting %}
-    {% elif section.extra.greeting %}
-    {% set greeting = section.extra.greeting %}
-    {% endif %}
-
     {% if page.extra.author %}
     {% set author = page.extra.author %}
     {% elif section.extra.author %}
@@ -141,19 +135,6 @@
         <main class="page-content" aria-label="Content">
             {% block content %}{% endblock content %}
         </main>
-        <footer>
-            {% block footer %}{% endblock footer %}
-            <hr data-content=" bottom ">
-            <span>
-                <!-- <p>This site was built using <a href="https://github.com/getzola/zola">Zola</a> and the  -->
-                <!--     source code can be found <a href="https://github.com/pants721/pants721.github.io">here</a>.</p> -->
-                {% if config.author %}
-                © {{ config.author }} 2024-2024,
-                {% endif %}
-                licensed under
-                <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a>
-            </span>
-        </footer>
     </div>
     <div class="dark-mode-buttons">
         <button class="dark-mode-button" id="dark-mode-on"><img src="{{ get_url(path='svg/dark_mode.svg') }}" width="24"

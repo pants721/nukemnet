@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}
-{% set greeting = taxonomy.name ~ ".iter();" %}
-<p><a href="/blog">..</a>{{ current_path }} -> {{ super() }}</p>
+<p><a href="/blog">..</a>{{ current_path }}</p>
 {% endblock header %}
 {% block content %}
 <ul>
