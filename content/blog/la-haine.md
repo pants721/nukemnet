@@ -1,7 +1,6 @@
 +++
 title = "La Haine - \"Jusqu'ici tout va bien\""
 date = 2024-06-11
-draft = true
 [taxonomies]
 tags=["la-haine", "film", "french"]
 categories=["film"]
