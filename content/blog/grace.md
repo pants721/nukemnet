@@ -1,7 +1,7 @@
 +++
 title = "on death"
 date = 2024-11-25
-draft = true
+draft = false
 [taxonomies]
 tags=["yap"]
 categories=["personal"]
