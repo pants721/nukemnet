@@ -182,3 +182,5 @@ give yourself patience<br/>
 give yourself kindness<br/>
 give yourself compassion<br/>
 give yourself grace<br/>
+
+-Lucas
