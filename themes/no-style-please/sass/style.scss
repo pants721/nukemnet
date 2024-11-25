@@ -1,4 +1,5 @@
 // super messy css
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
  @font-face {
   font-family: vidfont;
   src: url(/fonts/videotype.ttf);
@@ -25,7 +26,8 @@ html {
 }
 
 body {
-    font-family: "monospace", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: "monospace", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: "Jetbrains mono", monospace;
     font-optical-sizing: auto;
     font-weight: medium;
     font-style: normal;

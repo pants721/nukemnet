@@ -33,7 +33,7 @@ highlight_theme = "gray-matter-dark"
 header_nav = [
     { name = "home", url = "/" },
 	{ name = "blog", url = "/blog" },
-	{ name = "projects", url = "/projects" },
+	# { name = "projects", url = "/projects" },
     { name = "contact", url = "/contact" },
     { name = "resume", url = "/lucas-newcomb-resume.pdf" },
 ]
