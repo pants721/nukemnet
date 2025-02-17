@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    
+    
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    <title>My old code sucks :: pants-hub</title>
+    
+    
+    <meta name="title" content="My old code sucks :: pants-hub">
+    
+    
+    <meta name="description" content="Lucas Newcomb&#x27;s personal site">
+    <meta name="generator" content="Zola v0.16.1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pants721.github.io/blog/skely-2/">
+    
+    <meta property="og:site_name" content="pants-hub">
+    
+    <meta property="og:title" content="My old code sucks :: pants-hub">
+    
+    <meta property="og:description" content="Lucas Newcomb&#x27;s personal site">
+    
+    <meta property="og:image" content="https:&#x2F;&#x2F;pants721.github.io&#x2F;images&#x2F;android-chrome-512x512.png">
+
+    
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pants721.github.io/blog/skely-2/">
+    
+    <meta property="twitter:title" content="My old code sucks :: pants-hub">
+    
+    <meta property="twitter:description" content="Lucas Newcomb&#x27;s personal site">
+    
+    <meta property="twitter:image" content="https:&#x2F;&#x2F;pants721.github.io&#x2F;images&#x2F;android-chrome-512x512.png">
+    
+
+    <link rel="canonical" href="https://pants721.github.io/blog/skely-2/">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="https://pants721.github.io/images/android-chrome-512x512.png"> -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script type="application/ld+json">
+            {
+                "description":"Lucas Newcomb's personal site",
+                "url":"https://pants721.github.io/blog/skely-2/",
+                "@type":"WebSite",
+                "headline":"My old code sucks :: pants-hub",
+                "name":"My old code sucks :: pants-hub",
+                
+                "@context":"https://schema.org"
+            }
+        </script>
+    
+    
+    
+    <link rel="stylesheet" href="https://pants721.github.io/style.css" />
+    
+</head>
+
+<body class="dark-mode">
+        <div class="site-title">
+            pants-hub
+        <div class="dark-mode-buttons">
+            <button class="dark-mode-button" id="dark-mode-on"><img src="https://pants721.github.io/svg/dark_mode.svg" width="24"
+                height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+            <button class="dark-mode-button" id="dark-mode-off"><img src="https://pants721.github.io/svg/light_mode.svg"
+                width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+        </div>
+        </div>
+    <div class="w">
+        <header>
+            
+            <nav>
+                
+                <a href="/" >home</a>
+                
+                <a href="/blog" >blog</a>
+                
+                <a href="/contact" >contact</a>
+                
+                <a href="/lucas-newcomb-resume.pdf" >resume</a>
+                
+            </nav>
+            
+            
+<p><a href="..">..</a>/skely-2</p>
+<h1>My old code sucks</h1>
+
+        </header>
+        <main class="page-content" aria-label="Content">
+            
+<div class="post-content">
+
+
+
+
+<p>Hi everyone! For the past week or so I've been revisiting an old project of
+mine called <a href="https://github.com/pants721/skely">Skely</a>, which is a tool I wrote
+to help use and manage project templates (a.k.a. skeletons). The last time I
+touched the project was right over a year ago, around when I first started
+learning rust, so the code quality was not great. Since then, I've become an
+much much better developer and I want to look at some of my old code, look at
+the new code, and analyze why the new code is better. This won't be a complete
+code review, so if you're interested in the project's development make sure to
+check it out on <a href="https://github.com/pants721/skely">Github</a>!</p>
+<p>The major issue with the 1.0 was over-engineering. On paper, Skely should be a
+pretty simple project. It only has 3 jobs:</p>
+<ol>
+<li>Copy files to its <code>skeletons</code> directory</li>
+<li>Copy files from its <code>skeletons</code> directory</li>
+<li>Find and replace the placeholder phrase throughout the project</li>
+</ol>
+<p>However, Skely 1.0 drastically overachieved (or attempted to), which was the
+root of the design issues. It defined its own <code>.sk</code> file format for single file
+skeletons, which was utterly pointless as no kind of meta-data akin to markdown
+front-matter was stored in the file what so ever. The <code>$ sk new</code> command had a
+<code>--touch</code> boolean flag which just created a <code>.sk</code> file of that name in the
+<code>skeletons</code> directory- again, utterly pointless.</p>
+<p>Skely 1.0 also included the <code>edit</code> command. I think that this feature, although 
+unnecessary and now removed, is something that I'm going to consider adding 
+again. The main problem is that I was a noob and didn't know about environment 
+variables. On most UNIX systems the <code>$EDITOR</code> and <code>$VISUAL</code> variables are set, 
+usually to nano or vi by default. I didn't know this at the time being a 
+beginner and a VSCode/Emacs Mac user, so I created this monstrosity:</p>
+<pre data-lang="rs" style="background-color:#1a191a;color:#bebebe;" class="language-rs "><code class="language-rs" data-lang="rs"><span>pub fn open_editor(arg: &amp;PathBuf, editor_opt: &amp;Option&lt;String&gt;) -&gt; Result&lt;()&gt; {
+</span><span>    match editor_opt {
+</span><span>        Some(editor) =&gt; { ... }
+</span><span>        None =&gt; {
+</span><span>            #[rustfmt::skip]
+</span><span>            </span><span style="color:#616161;">// Editors (in order)
+</span><span>            let editors = vec![
+</span><span>                &quot;nvim&quot;,
+</span><span>                &quot;hx&quot;, </span><span style="color:#616161;">// helix
+</span><span>                &quot;vim&quot;,
+</span><span>                &quot;micro&quot;,
+</span><span>                &quot;nano&quot;,
+</span><span>                &quot;emacs&quot;,
+</span><span>                &quot;vi&quot;,
+</span><span>                &quot;pico&quot;,
+</span><span>                &quot;amp&quot;,
+</span><span>                &quot;ne&quot;, </span><span style="color:#616161;">// nice editor :)
+</span><span>            ];
+</span><span> 
+</span><span>            for editor in editors {
+</span><span>                let output = Command::new(&quot;which&quot;)
+</span><span>                    .arg(editor)
+</span><span>                    .output()
+</span><span>                    .context(&quot;Failed to execute command&quot;)?;
+</span><span> 
+</span><span>                if output.status.success() {
+</span><span>                    Command::new(editor)
+</span><span>                        .arg(arg)
+</span><span>                        .spawn()?
+</span><span>                        .wait()?;
+</span><span>                    break;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    Ok(())
+</span><span>}
+</span></code></pre>
+<p>Oh no... I hard coded default editors. This design decision is just insane 
+looking back. To explain the code, when using <code>$ sk edit</code>, if an editor wasn't 
+specified in Skely's <code>config.toml</code> file, then Skely would iterate over this 
+hard coded list of editors in order and find the first one where the <code>$ which  &lt;EDITOR&gt;</code> command succeeded.</p>
+<p>If you haven't realized already, this is an INSANE way to do this. First of 
+all, what happens if none of these editors are installed? Is the command just 
+non-functional then? Second, why is this the order? Most users aren't going to 
+read the configuration docs, so what if a Emacs user has Neovim installed on 
+their system? Are they just going to assume Skely is only compatible with 
+Neovim? Third, you have to edit a file if you want to change what editor you're 
+using? Now, this one is slightly less egregious as world-renowned tools like 
+git store preferred editor in a config file as well. However, git also supports 
+environment variables so that the editor for git operations can be changed 
+quickly on the fly.</p>
+<p>So how would/will this be implemented better? The reason I wrote this 
+horrendous code is because I didn't know how to fallback from an editor not 
+being specified in the config file, but now I do: environment variables. The 
+solution would be to find a user's preferred editor in this order:</p>
+<ol>
+<li>Check <code>~/$XDG_CONFIG_HOME/sk/config.toml</code></li>
+<li>Use <code>$SK_EDITOR</code> environment variable</li>
+<li>Use <code>$EDITOR</code> environment variable</li>
+<li>Use <code>$VISUAL</code> environment variable</li>
+<li>vi</li>
+<li>How are you even using a computer if none of those work</li>
+</ol>
+<p>At my current skill level, this would be the best way to find an editor. The 
+implementation would look something like this:</p>
+<pre data-lang="rs" style="background-color:#1a191a;color:#bebebe;" class="language-rs "><code class="language-rs" data-lang="rs"><span>fn get_editor(&amp;self) -&gt; Result&lt;String&gt; {
+</span><span>    </span><span style="color:#616161;">// Redundant, but this is just an example
+</span><span>    if let Ok(editor) = self.settings.editor {
+</span><span>        return editor
+</span><span>    }
+</span><span> 
+</span><span>    if let Ok(editor) = env::var(&quot;SK_EDITOR&quot;) {
+</span><span>        return editor;
+</span><span>    }
+</span><span> 
+</span><span>    if let Ok(editor) = env::var(&quot;EDITOR&quot;) {
+</span><span>        return editor;
+</span><span>    }
+</span><span> 
+</span><span>    if let Ok(editor) = env::var(&quot;VISUAL&quot;) {
+</span><span>        return editor;
+</span><span>    }
+</span><span> 
+</span><span>    &quot;vi&quot;.into()
+</span><span>}
+</span></code></pre>
+<p>Now, let's talk about project structure. Skely 1.0 had way too many files for 
+how simple of a project it was. The original file tree looked like this:</p>
+<pre style="background-color:#1a191a;color:#bebebe;"><code><span>src
+</span><span>├── app.rs
+</span><span>├── cli.rs
+</span><span>├── common.rs
+</span><span>├── main.rs
+</span><span>├── settings.rs
+</span><span>└── skeleton.rs
+</span></code></pre>
+<p>This is wayyyy too many files for such a simple project. In any language, the 
+purpose of having multiple source files is to split up code logically, to allow 
+for visibility of code to specified as public or private, and to be able 
+extract, reuse, and reference pieces of code. So if Skely were a large growing 
+project that needed lots of scalability, this organization would make sense 
+(except for <code>common.rs</code>, but we'll get to that). The problem goes back to 
+over-engineering. Skely doesn't do a lot, so this level of abstraction, 
+although not criminal, doesn't make lots of sense to me. For example, let's 
+look at <code>settings.rs</code>:</p>
+<pre data-lang="rs" style="background-color:#1a191a;color:#bebebe;" class="language-rs "><code class="language-rs" data-lang="rs"><span style="color:#616161;">// settings.rs
+</span><span> 
+</span><span>#[derive(Serialize, Deserialize, Debug)]
+</span><span>pub struct Settings {
+</span><span>    pub editor: Option&lt;String&gt;,
+</span><span>    pub placeholder: Option&lt;String&gt;,
+</span><span>}
+</span><span> 
+</span><span>impl Settings {
+</span><span>    ...
+</span><span>}
+</span></code></pre>
+<p>This struct stores a preferred editor and a placeholder phrase. Although I've 
+since removed this struct from the source code, it's functionality makes sense, 
+especially in the context of serializing and deserializing with 
+<a href="https://serde.rs/">serde</a>. But when would this ever be used outside of the 
+<code>App</code> struct that stores the central data for Skely? One could argue that you 
+might pass it into a helper function as a type, but I would argue that a helper 
+function that needs this should either be implemented for <code>App</code> or should 
+accept the values of the settings it needs to know about. So because this code 
+has no real use outside of the <code>App</code> struct, why not store it in <code>app.rs</code>? In a 
+project where there are multiple variations of settings for different purposes, 
+or if Skely implemented per-project settings, extracting <code>Settings</code> would make 
+sense again. For the former, I'd go with a trait of some sort, and for the 
+latter I'd use the same struct. As of now, Skely doesn't use a config file and 
+instead relies on the <code>$SK_PLACEHOLDER</code> environment variable and doesn't have 
+an edit feature.</p>
+<p>Another funny part of Skely 1.0 is the existence of a <code>common.rs</code> file. If I 
+remember correctly, I used this just because I had seen it as a convention in 
+smaller C projects, but looking back now it was just lazy coding. During my 
+initial attempts to refactor the project last week I separated it into 
+<code>cli_util.rs</code> and <code>file_util.rs</code> respectively. In Skely 2.0, I've just 
+flattened it into one <code>util.rs</code> file that contains basic file manipulation 
+utilities, which I think is fine as they aren't completely miscellaneous and 
+all take non-Skely data and return non-Skely data.</p>
+<p>There are many other issues with Skely 1.0, but this post is getting slightly 
+long-winded and preachy, especially for a young, learning, and growing 
+developer like myself. I think that it's very good to be able to go over my old 
+code and talk about what I did poorly and what I've learned from it. I also 
+have no doubt that I will be writing another post like this about code I'm 
+writing now in a year or two. But that's okay, because growing is okay and 
+mistakes are okay.</p>
+<p>Same as your code, you are also a growing and ever-improving project. I hope 
+you keep that in mind. Give yourself some grace; let yourself breathe.</p>
+<p>-Lucas</p>
+
+
+</div>
+<a class="revision" href="https://github.com/pants721/pants721.github.io/commits/main/content&#x2F;blog&#x2F;skely-2.md">revision history</a>
+<div class="taxonomies">
+
+
+<a href="/tags/development">#development</a>
+
+<a href="/tags/rust">#rust</a>
+
+<a href="/tags/skely">#skely</a>
+
+
+
+<a href="/categories/development">+development</a>
+
+
+
+
+</div>
+
+        </main>
+    </div>
+    <script>
+        const cls = document.body.classList;
+        const getSessionTheme = sessionStorage.getItem("theme");
+        if (getSessionTheme === "dark") {
+            cls.toggle("dark-mode", true);
+        } else if (getSessionTheme === "light") {
+            cls.toggle("dark-mode", false);
+        } else {
+            cls.toggle("dark-mode", true);
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function (e) {
+            cls.toggle("dark-mode", true);
+            sessionStorage.setItem("theme", "dark");
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function (e) {
+            cls.toggle("dark-mode", false);
+            sessionStorage.setItem("theme", "light");
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>

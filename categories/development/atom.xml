@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>pants-hub - development</title>
+    <subtitle>Lucas Newcomb&#x27;s personal site</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://pants721.github.io/categories/development/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://pants721.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-03-11T00:00:00+00:00</updated>
+    <id>https://pants721.github.io/categories/development/atom.xml</id>
+    <entry xml:lang="en">
+        <title>My old code sucks</title>
+        <published>2024-03-11T00:00:00+00:00</published>
+        <updated>2024-03-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lucas Newcomb
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pants721.github.io/blog/skely-2/"/>
+        <id>https://pants721.github.io/blog/skely-2/</id>
+        
+        <content type="html" xml:base="https://pants721.github.io/blog/skely-2/">&lt;p&gt;Hi everyone! For the past week or so I&#x27;ve been revisiting an old project of
+mine called &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pants721&#x2F;skely&quot;&gt;Skely&lt;&#x2F;a&gt;, which is a tool I wrote
+to help use and manage project templates (a.k.a. skeletons). The last time I
+touched the project was right over a year ago, around when I first started
+learning rust, so the code quality was not great. Since then, I&#x27;ve become an
+much much better developer and I want to look at some of my old code, look at
+the new code, and analyze why the new code is better. This won&#x27;t be a complete
+code review, so if you&#x27;re interested in the project&#x27;s development make sure to
+check it out on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pants721&#x2F;skely&quot;&gt;Github&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;p&gt;The major issue with the 1.0 was over-engineering. On paper, Skely should be a
+pretty simple project. It only has 3 jobs:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Copy files to its &lt;code&gt;skeletons&lt;&#x2F;code&gt; directory&lt;&#x2F;li&gt;
+&lt;li&gt;Copy files from its &lt;code&gt;skeletons&lt;&#x2F;code&gt; directory&lt;&#x2F;li&gt;
+&lt;li&gt;Find and replace the placeholder phrase throughout the project&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;However, Skely 1.0 drastically overachieved (or attempted to), which was the
+root of the design issues. It defined its own &lt;code&gt;.sk&lt;&#x2F;code&gt; file format for single file
+skeletons, which was utterly pointless as no kind of meta-data akin to markdown
+front-matter was stored in the file what so ever. The &lt;code&gt;$ sk new&lt;&#x2F;code&gt; command had a
+&lt;code&gt;--touch&lt;&#x2F;code&gt; boolean flag which just created a &lt;code&gt;.sk&lt;&#x2F;code&gt; file of that name in the
+&lt;code&gt;skeletons&lt;&#x2F;code&gt; directory- again, utterly pointless.&lt;&#x2F;p&gt;
+&lt;p&gt;Skely 1.0 also included the &lt;code&gt;edit&lt;&#x2F;code&gt; command. I think that this feature, although 
+unnecessary and now removed, is something that I&#x27;m going to consider adding 
+again. The main problem is that I was a noob and didn&#x27;t know about environment 
+variables. On most UNIX systems the &lt;code&gt;$EDITOR&lt;&#x2F;code&gt; and &lt;code&gt;$VISUAL&lt;&#x2F;code&gt; variables are set, 
+usually to nano or vi by default. I didn&#x27;t know this at the time being a 
+beginner and a VSCode&#x2F;Emacs Mac user, so I created this monstrosity:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rs&quot; style=&quot;background-color:#1a191a;color:#bebebe;&quot; class=&quot;language-rs &quot;&gt;&lt;code class=&quot;language-rs&quot; data-lang=&quot;rs&quot;&gt;&lt;span&gt;pub fn open_editor(arg: &amp;amp;PathBuf, editor_opt: &amp;amp;Option&amp;lt;String&amp;gt;) -&amp;gt; Result&amp;lt;()&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    match editor_opt {
+&lt;&#x2F;span&gt;&lt;span&gt;        Some(editor) =&amp;gt; { ... }
+&lt;&#x2F;span&gt;&lt;span&gt;        None =&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;            #[rustfmt::skip]
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616161;&quot;&gt;&#x2F;&#x2F; Editors (in order)
+&lt;&#x2F;span&gt;&lt;span&gt;            let editors = vec![
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;nvim&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;hx&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616161;&quot;&gt;&#x2F;&#x2F; helix
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;vim&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;micro&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;nano&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;emacs&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;vi&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;pico&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;amp&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;quot;ne&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616161;&quot;&gt;&#x2F;&#x2F; nice editor :)
+&lt;&#x2F;span&gt;&lt;span&gt;            ];
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;            for editor in editors {
+&lt;&#x2F;span&gt;&lt;span&gt;                let output = Command::new(&amp;quot;which&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;                    .arg(editor)
+&lt;&#x2F;span&gt;&lt;span&gt;                    .output()
+&lt;&#x2F;span&gt;&lt;span&gt;                    .context(&amp;quot;Failed to execute command&amp;quot;)?;
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;                if output.status.success() {
+&lt;&#x2F;span&gt;&lt;span&gt;                    Command::new(editor)
+&lt;&#x2F;span&gt;&lt;span&gt;                        .arg(arg)
+&lt;&#x2F;span&gt;&lt;span&gt;                        .spawn()?
+&lt;&#x2F;span&gt;&lt;span&gt;                        .wait()?;
+&lt;&#x2F;span&gt;&lt;span&gt;                    break;
+&lt;&#x2F;span&gt;&lt;span&gt;                }
+&lt;&#x2F;span&gt;&lt;span&gt;            }
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;    Ok(())
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Oh no... I hard coded default editors. This design decision is just insane 
+looking back. To explain the code, when using &lt;code&gt;$ sk edit&lt;&#x2F;code&gt;, if an editor wasn&#x27;t 
+specified in Skely&#x27;s &lt;code&gt;config.toml&lt;&#x2F;code&gt; file, then Skely would iterate over this 
+hard coded list of editors in order and find the first one where the &lt;code&gt;$ which  &amp;lt;EDITOR&amp;gt;&lt;&#x2F;code&gt; command succeeded.&lt;&#x2F;p&gt;
+&lt;p&gt;If you haven&#x27;t realized already, this is an INSANE way to do this. First of 
+all, what happens if none of these editors are installed? Is the command just 
+non-functional then? Second, why is this the order? Most users aren&#x27;t going to 
+read the configuration docs, so what if a Emacs user has Neovim installed on 
+their system? Are they just going to assume Skely is only compatible with 
+Neovim? Third, you have to edit a file if you want to change what editor you&#x27;re 
+using? Now, this one is slightly less egregious as world-renowned tools like 
+git store preferred editor in a config file as well. However, git also supports 
+environment variables so that the editor for git operations can be changed 
+quickly on the fly.&lt;&#x2F;p&gt;
+&lt;p&gt;So how would&#x2F;will this be implemented better? The reason I wrote this 
+horrendous code is because I didn&#x27;t know how to fallback from an editor not 
+being specified in the config file, but now I do: environment variables. The 
+solution would be to find a user&#x27;s preferred editor in this order:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Check &lt;code&gt;~&#x2F;$XDG_CONFIG_HOME&#x2F;sk&#x2F;config.toml&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Use &lt;code&gt;$SK_EDITOR&lt;&#x2F;code&gt; environment variable&lt;&#x2F;li&gt;
+&lt;li&gt;Use &lt;code&gt;$EDITOR&lt;&#x2F;code&gt; environment variable&lt;&#x2F;li&gt;
+&lt;li&gt;Use &lt;code&gt;$VISUAL&lt;&#x2F;code&gt; environment variable&lt;&#x2F;li&gt;
+&lt;li&gt;vi&lt;&#x2F;li&gt;
+&lt;li&gt;How are you even using a computer if none of those work&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;At my current skill level, this would be the best way to find an editor. The 
+implementation would look something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rs&quot; style=&quot;background-color:#1a191a;color:#bebebe;&quot; class=&quot;language-rs &quot;&gt;&lt;code class=&quot;language-rs&quot; data-lang=&quot;rs&quot;&gt;&lt;span&gt;fn get_editor(&amp;amp;self) -&amp;gt; Result&amp;lt;String&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616161;&quot;&gt;&#x2F;&#x2F; Redundant, but this is just an example
+&lt;&#x2F;span&gt;&lt;span&gt;    if let Ok(editor) = self.settings.editor {
+&lt;&#x2F;span&gt;&lt;span&gt;        return editor
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;    if let Ok(editor) = env::var(&amp;quot;SK_EDITOR&amp;quot;) {
+&lt;&#x2F;span&gt;&lt;span&gt;        return editor;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;    if let Ok(editor) = env::var(&amp;quot;EDITOR&amp;quot;) {
+&lt;&#x2F;span&gt;&lt;span&gt;        return editor;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;    if let Ok(editor) = env::var(&amp;quot;VISUAL&amp;quot;) {
+&lt;&#x2F;span&gt;&lt;span&gt;        return editor;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;vi&amp;quot;.into()
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, let&#x27;s talk about project structure. Skely 1.0 had way too many files for 
+how simple of a project it was. The original file tree looked like this:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#1a191a;color:#bebebe;&quot;&gt;&lt;code&gt;&lt;span&gt;src
+&lt;&#x2F;span&gt;&lt;span&gt;├── app.rs
+&lt;&#x2F;span&gt;&lt;span&gt;├── cli.rs
+&lt;&#x2F;span&gt;&lt;span&gt;├── common.rs
+&lt;&#x2F;span&gt;&lt;span&gt;├── main.rs
+&lt;&#x2F;span&gt;&lt;span&gt;├── settings.rs
+&lt;&#x2F;span&gt;&lt;span&gt;└── skeleton.rs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is wayyyy too many files for such a simple project. In any language, the 
+purpose of having multiple source files is to split up code logically, to allow 
+for visibility of code to specified as public or private, and to be able 
+extract, reuse, and reference pieces of code. So if Skely were a large growing 
+project that needed lots of scalability, this organization would make sense 
+(except for &lt;code&gt;common.rs&lt;&#x2F;code&gt;, but we&#x27;ll get to that). The problem goes back to 
+over-engineering. Skely doesn&#x27;t do a lot, so this level of abstraction, 
+although not criminal, doesn&#x27;t make lots of sense to me. For example, let&#x27;s 
+look at &lt;code&gt;settings.rs&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rs&quot; style=&quot;background-color:#1a191a;color:#bebebe;&quot; class=&quot;language-rs &quot;&gt;&lt;code class=&quot;language-rs&quot; data-lang=&quot;rs&quot;&gt;&lt;span style=&quot;color:#616161;&quot;&gt;&#x2F;&#x2F; settings.rs
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;#[derive(Serialize, Deserialize, Debug)]
+&lt;&#x2F;span&gt;&lt;span&gt;pub struct Settings {
+&lt;&#x2F;span&gt;&lt;span&gt;    pub editor: Option&amp;lt;String&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    pub placeholder: Option&amp;lt;String&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;impl Settings {
+&lt;&#x2F;span&gt;&lt;span&gt;    ...
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This struct stores a preferred editor and a placeholder phrase. Although I&#x27;ve 
+since removed this struct from the source code, it&#x27;s functionality makes sense, 
+especially in the context of serializing and deserializing with 
+&lt;a href=&quot;https:&#x2F;&#x2F;serde.rs&#x2F;&quot;&gt;serde&lt;&#x2F;a&gt;. But when would this ever be used outside of the 
+&lt;code&gt;App&lt;&#x2F;code&gt; struct that stores the central data for Skely? One could argue that you 
+might pass it into a helper function as a type, but I would argue that a helper 
+function that needs this should either be implemented for &lt;code&gt;App&lt;&#x2F;code&gt; or should 
+accept the values of the settings it needs to know about. So because this code 
+has no real use outside of the &lt;code&gt;App&lt;&#x2F;code&gt; struct, why not store it in &lt;code&gt;app.rs&lt;&#x2F;code&gt;? In a 
+project where there are multiple variations of settings for different purposes, 
+or if Skely implemented per-project settings, extracting &lt;code&gt;Settings&lt;&#x2F;code&gt; would make 
+sense again. For the former, I&#x27;d go with a trait of some sort, and for the 
+latter I&#x27;d use the same struct. As of now, Skely doesn&#x27;t use a config file and 
+instead relies on the &lt;code&gt;$SK_PLACEHOLDER&lt;&#x2F;code&gt; environment variable and doesn&#x27;t have 
+an edit feature.&lt;&#x2F;p&gt;
+&lt;p&gt;Another funny part of Skely 1.0 is the existence of a &lt;code&gt;common.rs&lt;&#x2F;code&gt; file. If I 
+remember correctly, I used this just because I had seen it as a convention in 
+smaller C projects, but looking back now it was just lazy coding. During my 
+initial attempts to refactor the project last week I separated it into 
+&lt;code&gt;cli_util.rs&lt;&#x2F;code&gt; and &lt;code&gt;file_util.rs&lt;&#x2F;code&gt; respectively. In Skely 2.0, I&#x27;ve just 
+flattened it into one &lt;code&gt;util.rs&lt;&#x2F;code&gt; file that contains basic file manipulation 
+utilities, which I think is fine as they aren&#x27;t completely miscellaneous and 
+all take non-Skely data and return non-Skely data.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many other issues with Skely 1.0, but this post is getting slightly 
+long-winded and preachy, especially for a young, learning, and growing 
+developer like myself. I think that it&#x27;s very good to be able to go over my old 
+code and talk about what I did poorly and what I&#x27;ve learned from it. I also 
+have no doubt that I will be writing another post like this about code I&#x27;m 
+writing now in a year or two. But that&#x27;s okay, because growing is okay and 
+mistakes are okay.&lt;&#x2F;p&gt;
+&lt;p&gt;Same as your code, you are also a growing and ever-improving project. I hope 
+you keep that in mind. Give yourself some grace; let yourself breathe.&lt;&#x2F;p&gt;
+&lt;p&gt;-Lucas&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Pilot</title>
+        <published>2024-03-03T00:00:00+00:00</published>
+        <updated>2024-03-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lucas Newcomb
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pants721.github.io/blog/pilot/"/>
+        <id>https://pants721.github.io/blog/pilot/</id>
+        
+        <content type="html" xml:base="https://pants721.github.io/blog/pilot/">&lt;p&gt;Hi everyone, welcome to my website. I&#x27;ve been meaning to make a website for a
+long time, but I&#x27;ve always struggled with making something that&#x27;s both good
+looking and functional as I&#x27;m not much of a frontend guy. Because of my general
+lack of interest in the frontend world, I had no idea that static site 
+generators (SSGs) existed, which make the entire process of creating a website
+an order of magnitude easier.&lt;&#x2F;p&gt;
+&lt;p&gt;I ended up doing some research into static site generators and found &lt;a href=&quot;https:&#x2F;&#x2F;pants721.github.io&#x2F;blog&#x2F;pilot&#x2F;jamstack.io&quot;&gt;Jamstack&lt;&#x2F;a&gt;, 
+which is a great resource for this type of stuff. Looking through the options 
+on Jamstack, &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt; caught my eye as it&#x27;s written in 
+Rust, and I am nothing if not a Rust shill. I later found out that using a 
+SSG is completely independent of the language it is written in, but supporting 
+Rust technology is always a win for me.&lt;&#x2F;p&gt;
+&lt;p&gt;Initially, Zola&#x27;s project structure was super confusing to me (and it still
+is to an extent). There&#x27;s the basic stuff that most SSG&#x27;s share, like the 
+directory for content, a config file, templates, and a theme, but Zola has some 
+unique parts that were increasingly confusing for me. One of them was using
+markdown as a form of configuration. Most SSG&#x27;s, like Hugo, for example, use 
+some sort of configuration in their markdown files through the TOML &lt;code&gt;+++&lt;&#x2F;code&gt; 
+section or the YAML &lt;code&gt;---&lt;&#x2F;code&gt; section, but Zola has mandatory markdown files that 
+are (mostly) dedicated to just configuration through &lt;code&gt;_index.md&lt;&#x2F;code&gt; files. I still
+don&#x27;t &lt;em&gt;really&lt;&#x2F;em&gt; understand it, but I understand it enough to get this site 
+working. I understand that it configures the section or directory, that it&#x27;s
+found in. For example, the &lt;code&gt;_index.md&lt;&#x2F;code&gt; file for the &lt;code&gt;&#x2F;blog&lt;&#x2F;code&gt; section on this site
+looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;md&quot; style=&quot;background-color:#1a191a;color:#bebebe;&quot; class=&quot;language-md &quot;&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Oh, weird. Well, usually, it would hold some configuration that dictates what
+templates the section and pages use, what the title is, etc. I suppose mine is
+empty because of the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pants721&#x2F;no-style-please&quot;&gt;theme I&#x27;m using&lt;&#x2F;a&gt;. 
+I found this theme on Zola&#x27;s theme page, but I had a number of personal nitpicks
+with it, so I just decided to create my own fork of it. As of right now, I have
+a few things I need to change still:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Make the tab title read &lt;code&gt;Section :: MySite&lt;&#x2F;code&gt; instead of just &lt;code&gt;Section&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Make the dark mode not just a literal inverse of light mode&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once I settled on a theme, the development of this site was super easy. I just
+had to fit it to the structure I wanted and then deploy it. As of the writing of
+this post, this site is being deployed using &lt;a href=&quot;https:&#x2F;&#x2F;pages.github.com&quot;&gt;Github Pages&lt;&#x2F;a&gt;
+and the continuous integration from my repo is being done by the very cool
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;shalzz&#x2F;zola-deploy-action&quot;&gt;Zola deploy Github action&lt;&#x2F;a&gt;. I&#x27;m
+super happy with how this has all turned out, and I think I&#x27;ll be sticking with
+this for a while.&lt;&#x2F;p&gt;
+&lt;p&gt;There are still things I want to implement on this site that I haven&#x27;t had the 
+time to do today. Here&#x27;s a general list that I might come back to update&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Create an about page so I can talk about myself&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Maybe add some images&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a footer&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a projects tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Get some more stuff on the contact tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a devices tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+(long-term) Add CV&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The intended purpose of this site is mostly to write about stuff I like, which 
+includes programming, computers, basketball, volleyball, philosophy, music,
+and much, much more. I have quite a lot of interests, which I&#x27;m sure I&#x27;ll write 
+about on my &amp;quot;about&amp;quot; page, and I think they will be a big part of this site as 
+I&#x27;m still young enough to not need my website to be super professional. Another
+purpose of this site is to inform prospective employers about my qualifications
+and show that I am one of the few developers with the ability to read and write.&lt;&#x2F;p&gt;
+&lt;p&gt;I also want to use this as a place to document my academic writing. As of right now,
+I&#x27;m a junior in high school, and I&#x27;m currently procrastinating working on my
+IB Philosophy IA on &lt;em&gt;The Eternal Sunshine of the Spotless Mind&lt;&#x2F;em&gt;. I don&#x27;t know if
+I&#x27;ll publish that one as I&#x27;m not too optimistic about it, but I do want to publish
+my IB Extended Essay comparing Camus&#x27; &lt;em&gt;The Myth of Sisyphus&lt;&#x2F;em&gt; and another TBA
+philosophical writing about the nature of meaninglessness, and specifically how
+we as humans should handle that.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s about it for the introduction to this site; thanks for reading.
+To many more!&lt;&#x2F;p&gt;
+&lt;p&gt;-Lucas&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    
+    
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    <title>Pilot :: pants-hub</title>
+    
+    
+    <meta name="title" content="Pilot :: pants-hub">
+    
+    
+    <meta name="description" content="Lucas Newcomb&#x27;s personal site">
+    <meta name="generator" content="Zola v0.16.1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pants721.github.io/blog/pilot/">
+    
+    <meta property="og:site_name" content="pants-hub">
+    
+    <meta property="og:title" content="Pilot :: pants-hub">
+    
+    <meta property="og:description" content="Lucas Newcomb&#x27;s personal site">
+    
+    <meta property="og:image" content="https:&#x2F;&#x2F;pants721.github.io&#x2F;images&#x2F;android-chrome-512x512.png">
+
+    
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pants721.github.io/blog/pilot/">
+    
+    <meta property="twitter:title" content="Pilot :: pants-hub">
+    
+    <meta property="twitter:description" content="Lucas Newcomb&#x27;s personal site">
+    
+    <meta property="twitter:image" content="https:&#x2F;&#x2F;pants721.github.io&#x2F;images&#x2F;android-chrome-512x512.png">
+    
+
+    <link rel="canonical" href="https://pants721.github.io/blog/pilot/">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="https://pants721.github.io/images/android-chrome-512x512.png"> -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script type="application/ld+json">
+            {
+                "description":"Lucas Newcomb's personal site",
+                "url":"https://pants721.github.io/blog/pilot/",
+                "@type":"WebSite",
+                "headline":"Pilot :: pants-hub",
+                "name":"Pilot :: pants-hub",
+                
+                "@context":"https://schema.org"
+            }
+        </script>
+    
+    
+    
+    <link rel="stylesheet" href="https://pants721.github.io/style.css" />
+    
+</head>
+
+<body class="dark-mode">
+        <div class="site-title">
+            pants-hub
+        <div class="dark-mode-buttons">
+            <button class="dark-mode-button" id="dark-mode-on"><img src="https://pants721.github.io/svg/dark_mode.svg" width="24"
+                height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+            <button class="dark-mode-button" id="dark-mode-off"><img src="https://pants721.github.io/svg/light_mode.svg"
+                width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+        </div>
+        </div>
+    <div class="w">
+        <header>
+            
+            <nav>
+                
+                <a href="/" >home</a>
+                
+                <a href="/blog" >blog</a>
+                
+                <a href="/contact" >contact</a>
+                
+                <a href="/lucas-newcomb-resume.pdf" >resume</a>
+                
+            </nav>
+            
+            
+<p><a href="..">..</a>/pilot</p>
+<h1>Pilot</h1>
+
+        </header>
+        <main class="page-content" aria-label="Content">
+            
+<div class="post-content">
+
+
+
+
+<p>Hi everyone, welcome to my website. I've been meaning to make a website for a
+long time, but I've always struggled with making something that's both good
+looking and functional as I'm not much of a frontend guy. Because of my general
+lack of interest in the frontend world, I had no idea that static site 
+generators (SSGs) existed, which make the entire process of creating a website
+an order of magnitude easier.</p>
+<p>I ended up doing some research into static site generators and found <a href="https://pants721.github.io/blog/pilot/jamstack.io">Jamstack</a>, 
+which is a great resource for this type of stuff. Looking through the options 
+on Jamstack, <a href="https://www.getzola.org">Zola</a> caught my eye as it's written in 
+Rust, and I am nothing if not a Rust shill. I later found out that using a 
+SSG is completely independent of the language it is written in, but supporting 
+Rust technology is always a win for me.</p>
+<p>Initially, Zola's project structure was super confusing to me (and it still
+is to an extent). There's the basic stuff that most SSG's share, like the 
+directory for content, a config file, templates, and a theme, but Zola has some 
+unique parts that were increasingly confusing for me. One of them was using
+markdown as a form of configuration. Most SSG's, like Hugo, for example, use 
+some sort of configuration in their markdown files through the TOML <code>+++</code> 
+section or the YAML <code>---</code> section, but Zola has mandatory markdown files that 
+are (mostly) dedicated to just configuration through <code>_index.md</code> files. I still
+don't <em>really</em> understand it, but I understand it enough to get this site 
+working. I understand that it configures the section or directory, that it's
+found in. For example, the <code>_index.md</code> file for the <code>/blog</code> section on this site
+looks like this:</p>
+<pre data-lang="md" style="background-color:#1a191a;color:#bebebe;" class="language-md "><code class="language-md" data-lang="md"><span>+++
+</span><span>+++
+</span></code></pre>
+<p>Oh, weird. Well, usually, it would hold some configuration that dictates what
+templates the section and pages use, what the title is, etc. I suppose mine is
+empty because of the <a href="https://github.com/pants721/no-style-please">theme I'm using</a>. 
+I found this theme on Zola's theme page, but I had a number of personal nitpicks
+with it, so I just decided to create my own fork of it. As of right now, I have
+a few things I need to change still:</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Make the tab title read <code>Section :: MySite</code> instead of just <code>Section</code></li>
+<li><input disabled="" type="checkbox"/>
+Make the dark mode not just a literal inverse of light mode</li>
+</ul>
+<p>Once I settled on a theme, the development of this site was super easy. I just
+had to fit it to the structure I wanted and then deploy it. As of the writing of
+this post, this site is being deployed using <a href="https://pages.github.com">Github Pages</a>
+and the continuous integration from my repo is being done by the very cool
+<a href="https://github.com/shalzz/zola-deploy-action">Zola deploy Github action</a>. I'm
+super happy with how this has all turned out, and I think I'll be sticking with
+this for a while.</p>
+<p>There are still things I want to implement on this site that I haven't had the 
+time to do today. Here's a general list that I might come back to update</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Create an about page so I can talk about myself</li>
+<li><input disabled="" type="checkbox"/>
+Maybe add some images</li>
+<li><input disabled="" type="checkbox"/>
+Add a footer</li>
+<li><input disabled="" type="checkbox"/>
+Add a projects tab</li>
+<li><input disabled="" type="checkbox"/>
+Get some more stuff on the contact tab</li>
+<li><input disabled="" type="checkbox"/>
+Add a devices tab</li>
+<li><input disabled="" type="checkbox"/>
+(long-term) Add CV</li>
+</ul>
+<p>The intended purpose of this site is mostly to write about stuff I like, which 
+includes programming, computers, basketball, volleyball, philosophy, music,
+and much, much more. I have quite a lot of interests, which I'm sure I'll write 
+about on my &quot;about&quot; page, and I think they will be a big part of this site as 
+I'm still young enough to not need my website to be super professional. Another
+purpose of this site is to inform prospective employers about my qualifications
+and show that I am one of the few developers with the ability to read and write.</p>
+<p>I also want to use this as a place to document my academic writing. As of right now,
+I'm a junior in high school, and I'm currently procrastinating working on my
+IB Philosophy IA on <em>The Eternal Sunshine of the Spotless Mind</em>. I don't know if
+I'll publish that one as I'm not too optimistic about it, but I do want to publish
+my IB Extended Essay comparing Camus' <em>The Myth of Sisyphus</em> and another TBA
+philosophical writing about the nature of meaninglessness, and specifically how
+we as humans should handle that.</p>
+<p>That's about it for the introduction to this site; thanks for reading.
+To many more!</p>
+<p>-Lucas</p>
+
+
+</div>
+<a class="revision" href="https://github.com/pants721/pants721.github.io/commits/main/content&#x2F;blog&#x2F;pilot.md">revision history</a>
+<div class="taxonomies">
+
+
+<a href="/tags/yap">#yap</a>
+
+<a href="/tags/development">#development</a>
+
+<a href="/tags/zola">#zola</a>
+
+
+
+<a href="/categories/development">+development</a>
+
+
+
+
+</div>
+
+        </main>
+    </div>
+    <script>
+        const cls = document.body.classList;
+        const getSessionTheme = sessionStorage.getItem("theme");
+        if (getSessionTheme === "dark") {
+            cls.toggle("dark-mode", true);
+        } else if (getSessionTheme === "light") {
+            cls.toggle("dark-mode", false);
+        } else {
+            cls.toggle("dark-mode", true);
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function (e) {
+            cls.toggle("dark-mode", true);
+            sessionStorage.setItem("theme", "dark");
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function (e) {
+            cls.toggle("dark-mode", false);
+            sessionStorage.setItem("theme", "light");
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>

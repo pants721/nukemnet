@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>pants-hub - zola</title>
+    <subtitle>Lucas Newcomb&#x27;s personal site</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://pants721.github.io/tags/zola/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://pants721.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-03-03T00:00:00+00:00</updated>
+    <id>https://pants721.github.io/tags/zola/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Pilot</title>
+        <published>2024-03-03T00:00:00+00:00</published>
+        <updated>2024-03-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lucas Newcomb
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pants721.github.io/blog/pilot/"/>
+        <id>https://pants721.github.io/blog/pilot/</id>
+        
+        <content type="html" xml:base="https://pants721.github.io/blog/pilot/">&lt;p&gt;Hi everyone, welcome to my website. I&#x27;ve been meaning to make a website for a
+long time, but I&#x27;ve always struggled with making something that&#x27;s both good
+looking and functional as I&#x27;m not much of a frontend guy. Because of my general
+lack of interest in the frontend world, I had no idea that static site 
+generators (SSGs) existed, which make the entire process of creating a website
+an order of magnitude easier.&lt;&#x2F;p&gt;
+&lt;p&gt;I ended up doing some research into static site generators and found &lt;a href=&quot;https:&#x2F;&#x2F;pants721.github.io&#x2F;blog&#x2F;pilot&#x2F;jamstack.io&quot;&gt;Jamstack&lt;&#x2F;a&gt;, 
+which is a great resource for this type of stuff. Looking through the options 
+on Jamstack, &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt; caught my eye as it&#x27;s written in 
+Rust, and I am nothing if not a Rust shill. I later found out that using a 
+SSG is completely independent of the language it is written in, but supporting 
+Rust technology is always a win for me.&lt;&#x2F;p&gt;
+&lt;p&gt;Initially, Zola&#x27;s project structure was super confusing to me (and it still
+is to an extent). There&#x27;s the basic stuff that most SSG&#x27;s share, like the 
+directory for content, a config file, templates, and a theme, but Zola has some 
+unique parts that were increasingly confusing for me. One of them was using
+markdown as a form of configuration. Most SSG&#x27;s, like Hugo, for example, use 
+some sort of configuration in their markdown files through the TOML &lt;code&gt;+++&lt;&#x2F;code&gt; 
+section or the YAML &lt;code&gt;---&lt;&#x2F;code&gt; section, but Zola has mandatory markdown files that 
+are (mostly) dedicated to just configuration through &lt;code&gt;_index.md&lt;&#x2F;code&gt; files. I still
+don&#x27;t &lt;em&gt;really&lt;&#x2F;em&gt; understand it, but I understand it enough to get this site 
+working. I understand that it configures the section or directory, that it&#x27;s
+found in. For example, the &lt;code&gt;_index.md&lt;&#x2F;code&gt; file for the &lt;code&gt;&#x2F;blog&lt;&#x2F;code&gt; section on this site
+looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;md&quot; style=&quot;background-color:#1a191a;color:#bebebe;&quot; class=&quot;language-md &quot;&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Oh, weird. Well, usually, it would hold some configuration that dictates what
+templates the section and pages use, what the title is, etc. I suppose mine is
+empty because of the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pants721&#x2F;no-style-please&quot;&gt;theme I&#x27;m using&lt;&#x2F;a&gt;. 
+I found this theme on Zola&#x27;s theme page, but I had a number of personal nitpicks
+with it, so I just decided to create my own fork of it. As of right now, I have
+a few things I need to change still:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Make the tab title read &lt;code&gt;Section :: MySite&lt;&#x2F;code&gt; instead of just &lt;code&gt;Section&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Make the dark mode not just a literal inverse of light mode&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once I settled on a theme, the development of this site was super easy. I just
+had to fit it to the structure I wanted and then deploy it. As of the writing of
+this post, this site is being deployed using &lt;a href=&quot;https:&#x2F;&#x2F;pages.github.com&quot;&gt;Github Pages&lt;&#x2F;a&gt;
+and the continuous integration from my repo is being done by the very cool
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;shalzz&#x2F;zola-deploy-action&quot;&gt;Zola deploy Github action&lt;&#x2F;a&gt;. I&#x27;m
+super happy with how this has all turned out, and I think I&#x27;ll be sticking with
+this for a while.&lt;&#x2F;p&gt;
+&lt;p&gt;There are still things I want to implement on this site that I haven&#x27;t had the 
+time to do today. Here&#x27;s a general list that I might come back to update&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Create an about page so I can talk about myself&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Maybe add some images&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a footer&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a projects tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Get some more stuff on the contact tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Add a devices tab&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+(long-term) Add CV&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The intended purpose of this site is mostly to write about stuff I like, which 
+includes programming, computers, basketball, volleyball, philosophy, music,
+and much, much more. I have quite a lot of interests, which I&#x27;m sure I&#x27;ll write 
+about on my &amp;quot;about&amp;quot; page, and I think they will be a big part of this site as 
+I&#x27;m still young enough to not need my website to be super professional. Another
+purpose of this site is to inform prospective employers about my qualifications
+and show that I am one of the few developers with the ability to read and write.&lt;&#x2F;p&gt;
+&lt;p&gt;I also want to use this as a place to document my academic writing. As of right now,
+I&#x27;m a junior in high school, and I&#x27;m currently procrastinating working on my
+IB Philosophy IA on &lt;em&gt;The Eternal Sunshine of the Spotless Mind&lt;&#x2F;em&gt;. I don&#x27;t know if
+I&#x27;ll publish that one as I&#x27;m not too optimistic about it, but I do want to publish
+my IB Extended Essay comparing Camus&#x27; &lt;em&gt;The Myth of Sisyphus&lt;&#x2F;em&gt; and another TBA
+philosophical writing about the nature of meaninglessness, and specifically how
+we as humans should handle that.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s about it for the introduction to this site; thanks for reading.
+To many more!&lt;&#x2F;p&gt;
+&lt;p&gt;-Lucas&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
